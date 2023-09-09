@@ -17,3 +17,10 @@
 1. Add `app.js` with express code
 1. Update `package.json` and add the start script ` "start": "node index.js"`.
 1. Add `index.js`
+
+## Create /Public 
+1. Add `/public` folder
+1. Add index page `index.html`
+1. Add Styles `styles.css`
+1. Add front-end Js `main.js`
+1. Add `app.use(express.static('public'));` to app.js to enable front-end
