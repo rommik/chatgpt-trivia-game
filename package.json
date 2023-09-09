@@ -1,0 +1,15 @@
+{
+  "name": "flashcard-tutorial",
+  "version": "1.0.0",
+  "description": "1. create folder `flashcard-tutorial`\r 1. cd to `flashcard-tutorial`\r 1. create new git repo `git init`",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
