@@ -1,4 +1,5 @@
 const express = require('express');
+const { generateAListForTopic } = require('./openai');
 const app = express();
 const port = 3000;
 
@@ -6,10 +7,7 @@ app.use(express.static('public'));
 app.use(express.json()); // Add JSON body parser middleware
 
 // Define your dictionary of questions and answers
-const questionsDictionary = {
-    1: {id:1, question: 'What is the capital of France?', answer: 'Paris' },
-    2: { id:2, question: 'Who wrote "Romeo and Juliet"?', answer: 'William Shakespeare' },
-    // Add more questions and answers as needed
+let questionsDictionary = {
 };
 
 app.get('/api/getQuestion', (req, res) => {
@@ -19,11 +17,11 @@ app.get('/api/getQuestion', (req, res) => {
     res.json(randomQuestion);
 });
 
-const userAnswers ={
-    1: {isCorrect: true},
-    2: {isCorrect: false},
+const userAnswers = {
+    1: { isCorrect: true },
+    2: { isCorrect: false },
 }
-    
+
 app.post('/api/answerQuestion', (req, res) => {
     const questionId = req.body.questionId;
     const userAnswer = req.body.userAnswer;
@@ -33,8 +31,8 @@ app.post('/api/answerQuestion', (req, res) => {
 });
 
 
-
-app.listen(port, () => {
+app.listen(port, async () => {
     console.log(`Server listening at http://localhost:${port}`)
+    questionsDictionary = await generateAListForTopic('France');
 }
 );
