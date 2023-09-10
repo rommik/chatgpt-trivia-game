@@ -8,25 +8,21 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    document.querySelector('.card-inner').addEventListener('click', function () {  
-        if (this.style.transform !== 'rotateY(180deg)')      
+    document.querySelector('.card-inner').addEventListener('click', function () {
+        if (this.style.transform !== 'rotateY(180deg)')
             toggleCard(this);
 
     });
 
     document.getElementById('smile-button').addEventListener('click', function () {
         postAnswer(document.querySelector('.feedback-question-id').innerHTML, true);
-        const cardInner = document.querySelector('.card-inner');
-        toggleCard(cardInner);
+
     });
     document.getElementById('frown-button').addEventListener('click', function () {
         postAnswer(document.querySelector('.feedback-question-id').innerHTML, false);
-        const cardInner = document.querySelector('.card-inner');
-        toggleCard(cardInner);
-
     });
 
-    
+
     // Function to fetch a random question from the server
     const fetchQuestion = () => {
         const questionText = document.querySelector('.card-front');
@@ -54,10 +50,13 @@ document.addEventListener('DOMContentLoaded', () => {
             .then((response) => response.json())
             .then((data) => {
                 console.log('Success:', data);
+                // Initial fetch of a random question
+                fetchQuestion();
+
+                const cardInner = document.querySelector('.card-inner');
+                toggleCard(cardInner);
             })
-            .catch((error) => {
-                console.error('Error:', error);
-            });
+            .catch((error) => console.error('Error posting answer:', error));
     };
 
     // Initial fetch of a random question

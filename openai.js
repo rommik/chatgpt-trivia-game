@@ -14,7 +14,7 @@ async function generateAListForTopic(topic) {
         model: "gpt-3.5-turbo",
     });
   
-      return JSON.parse(chatCompletion.choices[0].message.content);
+      return JSON.parse(chatCompletion.choices[0].message.content).questions;
   
     } catch (error) {
       console.error('Error generating QA list:', error.message);
